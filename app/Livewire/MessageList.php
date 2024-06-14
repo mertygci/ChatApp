@@ -26,6 +26,7 @@ class MessageList extends Component
     {
         $this->selectedUser = User::find($userId);
         $this->loadMessages();
+        $this->dispatch('messageSent');
     }
 
     public function sendMessage()
@@ -46,6 +47,8 @@ class MessageList extends Component
 
             $this->newMessage = '';
             $this->loadMessages();
+            $this->dispatch('messageSent');
+
         }
     }
 

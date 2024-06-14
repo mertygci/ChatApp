@@ -13,13 +13,14 @@ class UserList extends Component
 
     public function mount()
     {
-        $this->users = User::all();
+        $this->users = User::where('id', '!=', auth()->id())->get();
     }
 
     public function selectUser($userId)
     {
         $this->selectedUser = User::find($userId);
         $this->dispatch('userSelected', $userId); // Use dispatch instead of emit
+
     }
 
     public function render()
